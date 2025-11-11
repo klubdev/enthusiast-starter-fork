@@ -3,7 +3,8 @@
 
 # Register new product sources here
 CATALOG_PRODUCT_SOURCE_PLUGINS = {
-    "Sample Product Source": "enthusiast_source_sample.SampleProductSource",
+    "Sample Products": "enthusiast_source_sample.SampleProductSource",
+    "Medusa": "enthusiast_source_medusa.MedusaProductSource",
 }
 
 # Register new document sources here
@@ -13,13 +14,17 @@ CATALOG_DOCUMENT_SOURCE_PLUGINS = {
 }
 
 AVAILABLE_AGENTS: dict[str, dict[str, str]] = {
-    "product_search_agent": {
+    "enthusiast-agent-product-search": {
         "name": "Product Search Agent",
-        "agent_directory_path": "enthusiast_custom.examples.product_search.product_search",
+        "agent_directory_path": "enthusiast_agent_product_search"
     },
-    "pdf_agent": {
-        "name": "PDF Agent",
-        "agent_directory_path": "enthusiast_custom.examples.pdf_agent.pdf_agent",
+    "enthusiast-agent-catalog-enrichment": {
+        "name": "Catalog Enrichment Agent",
+        "agent_directory_path": "enthusiast_agent_catalog_enrichment"
+    },
+    "enthusiast-agent-ocr-to-order": {
+        "name": "OCR Order Agent",
+        "agent_directory_path": "enthusiast_agent_ocr_to_order"
     },
     "question_answer_agent": {
         "name": "Question Answer Agent",
@@ -33,3 +38,4 @@ DEFAULT_AGENT: dict = {
     "description": "Default agent",
     "config": {"tools": [{}], "agent_args": {}, "prompt_input": {}, "prompt_extension": {}},
 }
+

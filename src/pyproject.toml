@@ -10,6 +10,10 @@ python = "^3.10"
 enthusiast-common = ">=1,<2"
 langchain-community = "^0.3.27"
 enthusiast-agent-re-act = "^1.1.0"
+enthusiast-agent-catalog-enrichment = "^1.1.2"
+enthusiast-agent-ocr-to-order = "^1.1.2"
+enthusiast-agent-product-search = "^1.1.0"
+enthusiast-source-medusa = "^1.2.1"
 
 
 [build-system]
