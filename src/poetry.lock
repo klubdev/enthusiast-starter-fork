@@ -418,53 +418,57 @@ typing-inspect = ">=0.4.0,<1"
 
 [[package]]
 name = "enthusiast-agent-catalog-enrichment"
-version = "1.1.2"
-description = "Example implementation of a catalog enrichment ReAct agent for Enthusiast"
+version = "1.2.0"
+description = "Catalog Enrichment Agent for Enthusiast"
 optional = false
 python-versions = "<4,>=3.10"
 groups = ["main"]
 files = [
-    {file = "enthusiast_agent_catalog_enrichment-1.1.2-py3-none-any.whl", hash = "sha256:ae32ca4124b4cde0b8e6b5668fb08e17b45b1fc8f2829e966220c4086dea448b"},
-    {file = "enthusiast_agent_catalog_enrichment-1.1.2.tar.gz", hash = "sha256:0c0848d9d10ef459768c9b6d27d6a4aa080482d4c20a57a51e0267356e0703ee"},
+    {file = "enthusiast_agent_catalog_enrichment-1.2.0-py3-none-any.whl", hash = "sha256:b7f0b458111d4028dc0549dc19ebb165fd114787a6d07f50d2268a05fa13ce20"},
+    {file = "enthusiast_agent_catalog_enrichment-1.2.0.tar.gz", hash = "sha256:5974e650637e1ee2f5788d029c6e89ee9db2c216dcf90487b06c90abd1626aab"},
 ]
 
 [package.dependencies]
 enthusiast_agent_re_act = ">=1.2.0"
-enthusiast-common = ">=1.4.0,<2.0.0"
+enthusiast_agent_tool_calling = ">=1.0.0"
+enthusiast-common = ">=1.5.0,<2.0.0"
 langchain = ">=0.3.26,<0.4.0"
 
 [[package]]
 name = "enthusiast-agent-ocr-to-order"
-version = "1.1.2"
-description = "Example implementation of a OCR to order ReAct agent for Enthusiast"
+version = "1.2.0"
+description = "Purchase Order OCR Agent for Enthusiast"
 optional = false
 python-versions = "<4,>=3.10"
 groups = ["main"]
 files = [
-    {file = "enthusiast_agent_ocr_to_order-1.1.2-py3-none-any.whl", hash = "sha256:981b6015c071fab4de73ba1ba274ade337ecb94c08c6fcbd1d7906636487f5bf"},
-    {file = "enthusiast_agent_ocr_to_order-1.1.2.tar.gz", hash = "sha256:e2062f0e7eca29ba30267f595407ca3ab242ff3e456c87e0b99de127b69f13e2"},
+    {file = "enthusiast_agent_ocr_to_order-1.2.0-py3-none-any.whl", hash = "sha256:0471b03b37558487a482fca0edbc256b203e7d51c2bdb2fe84c9a8e065d172d9"},
+    {file = "enthusiast_agent_ocr_to_order-1.2.0.tar.gz", hash = "sha256:b756e2246f67ca7bfc0b7565450d5626595768f175d8eb7ef42ad118869b2842"},
 ]
 
 [package.dependencies]
+enthusiast-agent-product-search = ">=1.2.0,<2.0.0"
 enthusiast_agent_re_act = ">=1.2.0"
-enthusiast-common = ">=1.4.0,<2.0.0"
+enthusiast_agent_tool_calling = ">=1.0.0"
+enthusiast-common = ">=1.5.0,<2.0.0"
 langchain = ">=0.3.26,<0.4.0"
 
 [[package]]
 name = "enthusiast-agent-product-search"
-version = "1.1.0"
-description = "Example implementation of a Product Search ReAct agent for Enthusiast"
+version = "1.2.0"
+description = "Product Search Agent for Enthusiast"
 optional = false
 python-versions = "<4,>=3.10"
 groups = ["main"]
 files = [
-    {file = "enthusiast_agent_product_search-1.1.0-py3-none-any.whl", hash = "sha256:dceeda00162f7b52ed5269aac8c602c70851c7c61dba312e235445c7f5007f13"},
-    {file = "enthusiast_agent_product_search-1.1.0.tar.gz", hash = "sha256:dca86b8254b6d26683705c1ef7d80c8dad6cde9d236efbda6d81d76ba28621d7"},
+    {file = "enthusiast_agent_product_search-1.2.0-py3-none-any.whl", hash = "sha256:99d3d4976fda27785b088a3831d39737d961efed1f33850286c4b1733b575438"},
+    {file = "enthusiast_agent_product_search-1.2.0.tar.gz", hash = "sha256:9fcdaf0bda768c8ad1df3b6c2fa79007891b81944b6a0637ea2c758e00addf88"},
 ]
 
 [package.dependencies]
 enthusiast_agent_re_act = ">=1.2.0"
-enthusiast-common = ">=1.4.0,<2.0.0"
+enthusiast_agent_tool_calling = ">=1.0.0"
+enthusiast-common = ">=1.5.0,<2.0.0"
 langchain = ">=0.3.26,<0.4.0"
 
 [[package]]
@@ -484,15 +488,31 @@ enthusiast-common = ">=1.4.0,<2.0.0"
 langchain = ">=0.3.26,<0.4.0"
 
 [[package]]
+name = "enthusiast-agent-tool-calling"
+version = "1.0.0"
+description = "Base implementation of a Tool Calling agent for Enthusiast"
+optional = false
+python-versions = "<4,>=3.10"
+groups = ["main"]
+files = [
+    {file = "enthusiast_agent_tool_calling-1.0.0-py3-none-any.whl", hash = "sha256:5930d7d7b43318dca9a32e11a55b6184b056b1ffbfec6b08804d657d14ec311b"},
+    {file = "enthusiast_agent_tool_calling-1.0.0.tar.gz", hash = "sha256:5ba32dbf2ba580c0b55b07aab57831591f44b27d37d581824c4ae088d6d51a27"},
+]
+
+[package.dependencies]
+enthusiast-common = ">=1.4.0,<2.0.0"
+langchain = ">=0.3.26,<0.4.0"
+
+[[package]]
 name = "enthusiast-common"
-version = "1.4.0"
+version = "1.5.0"
 description = "Core interfaces for developing custom Enthusiast plugins and integrations."
 optional = false
 python-versions = "<4.0,>=3.10"
 groups = ["main"]
 files = [
-    {file = "enthusiast_common-1.4.0-py3-none-any.whl", hash = "sha256:7c60402731d6abb9158a2e791874120f8cce2a0c2d908bfd534e87e0066b4855"},
-    {file = "enthusiast_common-1.4.0.tar.gz", hash = "sha256:e9282610315fdc646981dade5ca1d70451749283a8a41abd02b3b6dc6d627e0c"},
+    {file = "enthusiast_common-1.5.0-py3-none-any.whl", hash = "sha256:7b8353b9e10d57d52459ac8391b81f5deceaad798a39c4637464ccc6e5862300"},
+    {file = "enthusiast_common-1.5.0.tar.gz", hash = "sha256:644d0f1202ce87c6283704d7084aa487c8fcceb302a8a1b44e8001e6bb5dcb7d"},
 ]
 
 [package.dependencies]
@@ -2154,4 +2174,4 @@ cffi = ["cffi (>=1.11)"]
 [metadata]
 lock-version = "2.1"
 python-versions = "^3.10"
-content-hash = "a273cd6ca892f6354211c534182669ea2607e0ab7d0fd02fdbe10f8adc95fa23"
+content-hash = "6827738cf8432588ba3e86d3f29bccf1e9d31c946dc85bc8bc312d71c8399238"
