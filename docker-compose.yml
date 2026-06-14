@@ -1,48 +1,71 @@
 services:
   postgres:
     image: pgvector/pgvector:pg17
+    restart: unless-stopped
     environment:
-      - POSTGRES_USER=enthusiast
-      - POSTGRES_PASSWORD=enthusiast
-      - POSTGRES_DB=enthusiast
+      POSTGRES_USER: ${ECL_DB_USER}
+      POSTGRES_PASSWORD: ${ECL_DB_PASSWORD}
+      POSTGRES_DB: ${ECL_DB_NAME}
+    volumes:
+      - enthusiast_postgres:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 5s
       timeout: 5s
       retries: 10
+
   redis:
-    image: redis:latest
+    image: redis:7-alpine
+    restart: unless-stopped
+    volumes:
+      - enthusiast_redis:/data
+
   frontend:
     image: upsidelab/enthusiast-frontend:latest
+    restart: unless-stopped
     environment:
-      - PORT=10001
-      - VITE_API_BASE=http://localhost:10000
-      - VITE_WS_BASE=ws://localhost:10000
+      PORT: 10001
+      VITE_API_BASE: ${VITE_API_BASE}
+      VITE_WS_BASE: ${VITE_WS_BASE}
     ports:
-      - "10001:10001"
+      - 10001
+    depends_on:
+      - api
+
   api:
     build:
       context: .
       dockerfile: Dockerfile
-    ports:
-      - "10000:10000"
+    restart: unless-stopped
     env_file:
-      - ./config/env
+      - .env
     environment:
-      - PORT=10000
-      - RUN_MIGRATIONS=True
+      PORT: 10000
+      RUN_MIGRATIONS: "True"
+    ports:
+      - 10000
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_started
+
   worker:
     build:
       context: .
       dockerfile: Dockerfile
+    restart: unless-stopped
     env_file:
-      - ./config/env
+      - .env
     environment:
-      - RUN_MIGRATIONS=False
-      - RUN_WORKER=True
+      RUN_MIGRATIONS: "False"
+      RUN_WORKER: "True"
     depends_on:
       postgres:
         condition: service_healthy
+      redis:
+        condition: service_started
+
+volumes:
+  enthusiast_postgres:
+  enthusiast_redis:
