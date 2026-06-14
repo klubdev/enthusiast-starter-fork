@@ -13,12 +13,16 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    networks:
+      - internal
 
   redis:
     image: redis:7-alpine
     restart: unless-stopped
     volumes:
       - enthusiast_redis:/data
+    networks:
+      - internal
 
   frontend:
     image: upsidelab/enthusiast-frontend:latest
@@ -27,6 +31,7 @@ services:
       - .env
     environment:
       PORT: 10001
+      HOST: 0.0.0.0
       VITE_API_BASE: ${VITE_API_BASE}
       VITE_WS_BASE: ${VITE_WS_BASE}
       __VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS: ${__VITE_ADDITIONAL_SERVER_ALLOWED_HOSTS}
@@ -34,6 +39,9 @@ services:
       - 10001
     depends_on:
       - api
+    networks:
+      - internal
+      - dokploy-network
 
   api:
     build:
@@ -52,6 +60,9 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
+    networks:
+      - internal
+      - dokploy-network
 
   worker:
     build:
@@ -68,7 +79,14 @@ services:
         condition: service_healthy
       redis:
         condition: service_started
+    networks:
+      - internal
 
 volumes:
   enthusiast_postgres:
   enthusiast_redis:
+
+networks:
+  internal:
+  dokploy-network:
+    external: true
